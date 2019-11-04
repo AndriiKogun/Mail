@@ -19,14 +19,17 @@ class ViewController: UIViewController {
     private var imapCheckOperation: MCOIMAPOperation!
     private let imapSession = MCOIMAPSession()
     
+    private var totalNumberOfInboxMessages: Int32 = -1
+    private var isLoading = false
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
-        tableView.rowHeight = 40
+        tableView.rowHeight = 80
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.register(SearchSuggestionTableViewCell.self, forCellReuseIdentifier: SearchSuggestionTableViewCell.reuseIdentifier)
+        tableView.register(MailTableViewCell.nib, forCellReuseIdentifier: MailTableViewCell.reuseIdentifier)
         return tableView
     }()
 
@@ -53,31 +56,54 @@ class ViewController: UIViewController {
         imapSession.username = "gamnoposte@laposte.net"
         imapSession.password = "Piska2016"
         imapSession.connectionType = .TLS
+        
+        imapSession.connectionLogger = { (connectionID, type, data) in
+            
+        }
 
         let imapCheckOperation = imapSession.checkAccountOperation()
         imapCheckOperation?.start({ [weak self] (error) in
             guard let self = `self` else { return }
             if error == nil {
-                self.loadMessages()
+                self.loadMessages(10)
             }
         })
     }
     
-    func loadMessages() {
+    func loadMessages(_ number: Int32) {
         let inboxFolder = "INBOX"
         let inboxFolderInfo = imapSession.folderInfoOperation(inboxFolder)
 
-        inboxFolderInfo?.start({ (error, info) in
+        inboxFolderInfo?.start({ [weak self] (error, info) in
+            guard let self = `self` else { return }
             
-            let fetchRange = MCORangeMake(611, 620);
-            self.imapMessagesFetchOpperation = self.imapSession.fetchMessagesOperation(withFolder: inboxFolder, requestKind: [.headers, .structure, .internalDate, .headerSubject, .flags], uids: MCOIndexSet.init(range: fetchRange))
+            let totalNumberOfMessagesDidChange = self.totalNumberOfInboxMessages != info?.messageCount
+            self.totalNumberOfInboxMessages = info?.messageCount ?? 0
+                
+            var numberOfMessagesToLoad = Int32(min(self.totalNumberOfInboxMessages, number))
+            
+            if numberOfMessagesToLoad == 0 {
+                self.isLoading = false
+                return
+            }
+            
+            var fetchRange: MCORange!
+            
+            if !totalNumberOfMessagesDidChange && !self.messages.isEmpty {
+                numberOfMessagesToLoad -= Int32(self.messages.count)
+                fetchRange = MCORangeMake(UInt64(self.totalNumberOfInboxMessages - Int32(self.messages.count) - (numberOfMessagesToLoad - 1)), UInt64(numberOfMessagesToLoad - 1))
+            } else {
+                fetchRange = MCORangeMake(UInt64(self.totalNumberOfInboxMessages - (numberOfMessagesToLoad - 1)), UInt64(numberOfMessagesToLoad - 1))
+            }
+            
+            self.imapMessagesFetchOpperation = self.imapSession.fetchMessagesByNumberOperation(withFolder: inboxFolder, requestKind: [.headers, .structure, .internalDate, .headerSubject, .flags], numbers: MCOIndexSet.init(range: fetchRange))
             self.imapMessagesFetchOpperation?.progress = { (current) in
                 print("current\(current)")
             }
             
             self.imapMessagesFetchOpperation.start { (error, messages, vanishedMessages) in
                 if let messages = messages as?  [MCOIMAPMessage] {
-                    self.messages = messages
+                    self.messages = messages.sorted(by: { $0.header.date > $1.header.date })
                     self.tableView.reloadData()
                 }
             }
@@ -93,9 +119,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
-        
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = message.header.subject
+        let cell = tableView.dequeueReusableCell(withIdentifier: MailTableViewCell.reuseIdentifier) as! MailTableViewCell
+        cell.setupWith(message: message)
         return cell
     }
     

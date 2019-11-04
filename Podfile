@@ -6,7 +6,7 @@ target 'Mail' do
   use_frameworks!
 
 	pod 'mailcore2-ios'
-  pod 'SnapKit', '~> 4.0'
+  pod 'SnapKit', '~> 5.0'
 
   # Pods for Mail
 

@@ -17,6 +17,9 @@
 		B5270385236B8E6500AD5455 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5270383236B8E6500AD5455 /* LaunchScreen.storyboard */; };
 		B5270390236B8E6600AD5455 /* MailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527038F236B8E6600AD5455 /* MailTests.swift */; };
 		B527039B236B8E6600AD5455 /* MailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527039A236B8E6600AD5455 /* MailUITests.swift */; };
+		B57D4FCE236F9186005AA201 /* MailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57D4FCC236F9186005AA201 /* MailTableViewCell.swift */; };
+		B57D4FCF236F9186005AA201 /* MailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57D4FCD236F9186005AA201 /* MailTableViewCell.xib */; };
+		B57D4FD1236F97AB005AA201 /* UIView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57D4FD0236F97AB005AA201 /* UIView+Extention.swift */; };
 		E39D3A72D328430CC7742A7D /* Pods_Mail_MailUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF51F366631DA63B3336252F /* Pods_Mail_MailUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +61,9 @@
 		B527039A236B8E6600AD5455 /* MailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailUITests.swift; sourceTree = "<group>"; };
 		B527039C236B8E6600AD5455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B52D6AA7236B9B7D001CBAE4 /* Mail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mail-Bridging-Header.h"; sourceTree = "<group>"; };
+		B57D4FCC236F9186005AA201 /* MailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTableViewCell.swift; sourceTree = "<group>"; };
+		B57D4FCD236F9186005AA201 /* MailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailTableViewCell.xib; sourceTree = "<group>"; };
+		B57D4FD0236F97AB005AA201 /* UIView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extention.swift"; sourceTree = "<group>"; };
 		C7322D76A86771DFB3CE8D0A /* Pods-MailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MailTests.release.xcconfig"; path = "Target Support Files/Pods-MailTests/Pods-MailTests.release.xcconfig"; sourceTree = "<group>"; };
 		D12CEFC789673E6A38E5431C /* Pods-Mail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mail.release.xcconfig"; path = "Target Support Files/Pods-Mail/Pods-Mail.release.xcconfig"; sourceTree = "<group>"; };
 		EF51F366631DA63B3336252F /* Pods_Mail_MailUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mail_MailUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,11 +136,14 @@
 				B5270375236B8E6400AD5455 /* AppDelegate.swift */,
 				B5270377236B8E6400AD5455 /* SceneDelegate.swift */,
 				B5270379236B8E6400AD5455 /* ViewController.swift */,
+				B57D4FCC236F9186005AA201 /* MailTableViewCell.swift */,
+				B57D4FCD236F9186005AA201 /* MailTableViewCell.xib */,
 				B5270381236B8E6500AD5455 /* Assets.xcassets */,
 				B5270383236B8E6500AD5455 /* LaunchScreen.storyboard */,
 				B5270386236B8E6500AD5455 /* Info.plist */,
 				B527037E236B8E6400AD5455 /* Mail.xcdatamodeld */,
 				B52D6AA7236B9B7D001CBAE4 /* Mail-Bridging-Header.h */,
+				B57D4FD0236F97AB005AA201 /* UIView+Extention.swift */,
 			);
 			path = Mail;
 			sourceTree = "<group>";
@@ -280,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5270385236B8E6500AD5455 /* LaunchScreen.storyboard in Resources */,
+				B57D4FCF236F9186005AA201 /* MailTableViewCell.xib in Resources */,
 				B5270382236B8E6500AD5455 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,8 +420,10 @@
 			files = (
 				B5270380236B8E6400AD5455 /* Mail.xcdatamodeld in Sources */,
 				B527037A236B8E6400AD5455 /* ViewController.swift in Sources */,
+				B57D4FCE236F9186005AA201 /* MailTableViewCell.swift in Sources */,
 				B5270376236B8E6400AD5455 /* AppDelegate.swift in Sources */,
 				B5270378236B8E6400AD5455 /* SceneDelegate.swift in Sources */,
+				B57D4FD1236F97AB005AA201 /* UIView+Extention.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
