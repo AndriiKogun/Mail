@@ -9,14 +9,29 @@
 /* Begin PBXBuildFile section */
 		3085A83236F9AE31F51D6F45 /* Pods_MailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A7949E5951292BE90848C0 /* Pods_MailTests.framework */; };
 		4F1B1DD8E40E57296A86A40C /* Pods_Mail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB9DD58F89F78FD2A7A5EE8 /* Pods_Mail.framework */; };
+		B5069102238DD83600DD356C /* MCTMsgViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5069101238DD83600DD356C /* MCTMsgViewController.mm */; };
+		B5069105238DD86300DD356C /* MCOMessageView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5069104238DD86300DD356C /* MCOMessageView.mm */; };
+		B5069108238DD9B700DD356C /* MCOCIDURLProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5069106238DD9B700DD356C /* MCOCIDURLProtocol.mm */; };
+		B506910D238DE86B00DD356C /* MailDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B506910C238DE86B00DD356C /* MailDetailsViewController.swift */; };
 		B5270376236B8E6400AD5455 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5270375236B8E6400AD5455 /* AppDelegate.swift */; };
 		B5270378236B8E6400AD5455 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5270377236B8E6400AD5455 /* SceneDelegate.swift */; };
-		B527037A236B8E6400AD5455 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5270379236B8E6400AD5455 /* ViewController.swift */; };
+		B527037A236B8E6400AD5455 /* MailsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5270379236B8E6400AD5455 /* MailsListViewController.swift */; };
 		B5270380236B8E6400AD5455 /* Mail.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B527037E236B8E6400AD5455 /* Mail.xcdatamodeld */; };
 		B5270382236B8E6500AD5455 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5270381236B8E6500AD5455 /* Assets.xcassets */; };
 		B5270385236B8E6500AD5455 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5270383236B8E6500AD5455 /* LaunchScreen.storyboard */; };
 		B5270390236B8E6600AD5455 /* MailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527038F236B8E6600AD5455 /* MailTests.swift */; };
 		B527039B236B8E6600AD5455 /* MailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527039A236B8E6600AD5455 /* MailUITests.swift */; };
+		B54A75DE249FF25400C080DE /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A75DD249FF25400C080DE /* LeftMenuViewController.swift */; };
+		B54A75E0249FF2D100C080DE /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A75DF249FF2D100C080DE /* SideMenuViewController.swift */; };
+		B54A75E2249FFA0100C080DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A75E1249FFA0100C080DE /* MapKit.framework */; };
+		B56AFA12238E6AC200DAFD0F /* File.html in Resources */ = {isa = PBXBuildFile; fileRef = B56AFA11238E6AC200DAFD0F /* File.html */; };
+		B57771BA23775CA8004036D6 /* SendMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57771B923775CA8004036D6 /* SendMailViewController.swift */; };
+		B57771BC23775CCB004036D6 /* SendMailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57771BB23775CCB004036D6 /* SendMailViewController.xib */; };
+		B57771BE23776560004036D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57771BD23776560004036D6 /* Constants.swift */; };
+		B57771C023776809004036D6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57771BF23776809004036D6 /* DataManager.swift */; };
+		B57771C2237768AC004036D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57771C1237768AC004036D6 /* User.swift */; };
+		B57771C5237769A2004036D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57771C3237769A2004036D6 /* LoginViewController.swift */; };
+		B57771C6237769A2004036D6 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57771C4237769A2004036D6 /* LoginViewController.xib */; };
 		B57D4FCE236F9186005AA201 /* MailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57D4FCC236F9186005AA201 /* MailTableViewCell.swift */; };
 		B57D4FCF236F9186005AA201 /* MailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57D4FCD236F9186005AA201 /* MailTableViewCell.xib */; };
 		B57D4FD1236F97AB005AA201 /* UIView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57D4FD0236F97AB005AA201 /* UIView+Extention.swift */; };
@@ -46,10 +61,17 @@
 		4EB9DD58F89F78FD2A7A5EE8 /* Pods_Mail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A7949E5951292BE90848C0 /* Pods_MailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C83EAFE6BCD17FA481C493E /* Pods-Mail-MailUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mail-MailUITests.release.xcconfig"; path = "Target Support Files/Pods-Mail-MailUITests/Pods-Mail-MailUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B5069100238DD83600DD356C /* MCTMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTMsgViewController.h; sourceTree = "<group>"; };
+		B5069101238DD83600DD356C /* MCTMsgViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MCTMsgViewController.mm; sourceTree = "<group>"; };
+		B5069103238DD86300DD356C /* MCOMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCOMessageView.h; sourceTree = "<group>"; };
+		B5069104238DD86300DD356C /* MCOMessageView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MCOMessageView.mm; sourceTree = "<group>"; };
+		B5069106238DD9B700DD356C /* MCOCIDURLProtocol.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MCOCIDURLProtocol.mm; sourceTree = "<group>"; };
+		B5069107238DD9B700DD356C /* MCOCIDURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCOCIDURLProtocol.h; sourceTree = "<group>"; };
+		B506910C238DE86B00DD356C /* MailDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailDetailsViewController.swift; sourceTree = "<group>"; };
 		B5270372236B8E6400AD5455 /* Mail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5270375236B8E6400AD5455 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5270377236B8E6400AD5455 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B5270379236B8E6400AD5455 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B5270379236B8E6400AD5455 /* MailsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailsListViewController.swift; sourceTree = "<group>"; };
 		B527037F236B8E6400AD5455 /* Mail.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mail.xcdatamodel; sourceTree = "<group>"; };
 		B5270381236B8E6500AD5455 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5270384236B8E6500AD5455 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,6 +83,17 @@
 		B527039A236B8E6600AD5455 /* MailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailUITests.swift; sourceTree = "<group>"; };
 		B527039C236B8E6600AD5455 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B52D6AA7236B9B7D001CBAE4 /* Mail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mail-Bridging-Header.h"; sourceTree = "<group>"; };
+		B54A75DD249FF25400C080DE /* LeftMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
+		B54A75DF249FF2D100C080DE /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		B54A75E1249FFA0100C080DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B56AFA11238E6AC200DAFD0F /* File.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = File.html; sourceTree = "<group>"; };
+		B57771B923775CA8004036D6 /* SendMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMailViewController.swift; sourceTree = "<group>"; };
+		B57771BB23775CCB004036D6 /* SendMailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMailViewController.xib; sourceTree = "<group>"; };
+		B57771BD23776560004036D6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B57771BF23776809004036D6 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B57771C1237768AC004036D6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B57771C3237769A2004036D6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B57771C4237769A2004036D6 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		B57D4FCC236F9186005AA201 /* MailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTableViewCell.swift; sourceTree = "<group>"; };
 		B57D4FCD236F9186005AA201 /* MailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailTableViewCell.xib; sourceTree = "<group>"; };
 		B57D4FD0236F97AB005AA201 /* UIView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extention.swift"; sourceTree = "<group>"; };
@@ -75,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54A75E2249FFA0100C080DE /* MapKit.framework in Frameworks */,
 				4F1B1DD8E40E57296A86A40C /* Pods_Mail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +135,7 @@
 		9607F7EAA7D5941417B03243 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B54A75E1249FFA0100C080DE /* MapKit.framework */,
 				4EB9DD58F89F78FD2A7A5EE8 /* Pods_Mail.framework */,
 				EF51F366631DA63B3336252F /* Pods_Mail_MailUITests.framework */,
 				56A7949E5951292BE90848C0 /* Pods_MailTests.framework */,
@@ -133,17 +168,31 @@
 		B5270374236B8E6400AD5455 /* Mail */ = {
 			isa = PBXGroup;
 			children = (
+				B54A75DF249FF2D100C080DE /* SideMenuViewController.swift */,
+				B54A75DC249FF22F00C080DE /* Menu */,
+				B52D2D8D23D64CD5003BAE4E /* Create */,
+				B52D2D8723D64B5F003BAE4E /* Mails */,
+				B52D2D8A23D64BF0003BAE4E /* Details */,
+				B5069100238DD83600DD356C /* MCTMsgViewController.h */,
+				B5069101238DD83600DD356C /* MCTMsgViewController.mm */,
+				B5069103238DD86300DD356C /* MCOMessageView.h */,
+				B5069104238DD86300DD356C /* MCOMessageView.mm */,
+				B5069107238DD9B700DD356C /* MCOCIDURLProtocol.h */,
+				B5069106238DD9B700DD356C /* MCOCIDURLProtocol.mm */,
 				B5270375236B8E6400AD5455 /* AppDelegate.swift */,
 				B5270377236B8E6400AD5455 /* SceneDelegate.swift */,
-				B5270379236B8E6400AD5455 /* ViewController.swift */,
-				B57D4FCC236F9186005AA201 /* MailTableViewCell.swift */,
-				B57D4FCD236F9186005AA201 /* MailTableViewCell.xib */,
 				B5270381236B8E6500AD5455 /* Assets.xcassets */,
 				B5270383236B8E6500AD5455 /* LaunchScreen.storyboard */,
 				B5270386236B8E6500AD5455 /* Info.plist */,
 				B527037E236B8E6400AD5455 /* Mail.xcdatamodeld */,
 				B52D6AA7236B9B7D001CBAE4 /* Mail-Bridging-Header.h */,
 				B57D4FD0236F97AB005AA201 /* UIView+Extention.swift */,
+				B57771BD23776560004036D6 /* Constants.swift */,
+				B57771BF23776809004036D6 /* DataManager.swift */,
+				B57771C1237768AC004036D6 /* User.swift */,
+				B57771C3237769A2004036D6 /* LoginViewController.swift */,
+				B57771C4237769A2004036D6 /* LoginViewController.xib */,
+				B56AFA11238E6AC200DAFD0F /* File.html */,
 			);
 			path = Mail;
 			sourceTree = "<group>";
@@ -164,6 +213,89 @@
 				B527039C236B8E6600AD5455 /* Info.plist */,
 			);
 			path = MailUITests;
+			sourceTree = "<group>";
+		};
+		B52D2D8723D64B5F003BAE4E /* Mails */ = {
+			isa = PBXGroup;
+			children = (
+				B52D2D8923D64BAE003BAE4E /* View */,
+				B52D2D8823D64B9F003BAE4E /* Controller */,
+			);
+			path = Mails;
+			sourceTree = "<group>";
+		};
+		B52D2D8823D64B9F003BAE4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5270379236B8E6400AD5455 /* MailsListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B52D2D8923D64BAE003BAE4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B57D4FCC236F9186005AA201 /* MailTableViewCell.swift */,
+				B57D4FCD236F9186005AA201 /* MailTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B52D2D8A23D64BF0003BAE4E /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				B52D2D8C23D64C04003BAE4E /* Controller */,
+				B52D2D8B23D64BFD003BAE4E /* View */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		B52D2D8B23D64BFD003BAE4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B52D2D8C23D64C04003BAE4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B506910C238DE86B00DD356C /* MailDetailsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B52D2D8D23D64CD5003BAE4E /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				B52D2D8F23D64CE3003BAE4E /* View */,
+				B52D2D8E23D64CDD003BAE4E /* Controller */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		B52D2D8E23D64CDD003BAE4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B57771B923775CA8004036D6 /* SendMailViewController.swift */,
+				B57771BB23775CCB004036D6 /* SendMailViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B52D2D8F23D64CE3003BAE4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B54A75DC249FF22F00C080DE /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				B54A75DD249FF25400C080DE /* LeftMenuViewController.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		EB9BCF3357BC9CC748F5FFA8 /* Pods */ = {
@@ -288,9 +420,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57771C6237769A2004036D6 /* LoginViewController.xib in Resources */,
 				B5270385236B8E6500AD5455 /* LaunchScreen.storyboard in Resources */,
 				B57D4FCF236F9186005AA201 /* MailTableViewCell.xib in Resources */,
 				B5270382236B8E6500AD5455 /* Assets.xcassets in Resources */,
+				B56AFA12238E6AC200DAFD0F /* File.html in Resources */,
+				B57771BC23775CCB004036D6 /* SendMailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,12 +553,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57771C5237769A2004036D6 /* LoginViewController.swift in Sources */,
 				B5270380236B8E6400AD5455 /* Mail.xcdatamodeld in Sources */,
-				B527037A236B8E6400AD5455 /* ViewController.swift in Sources */,
+				B57771C023776809004036D6 /* DataManager.swift in Sources */,
+				B527037A236B8E6400AD5455 /* MailsListViewController.swift in Sources */,
 				B57D4FCE236F9186005AA201 /* MailTableViewCell.swift in Sources */,
+				B57771BA23775CA8004036D6 /* SendMailViewController.swift in Sources */,
+				B54A75DE249FF25400C080DE /* LeftMenuViewController.swift in Sources */,
+				B5069102238DD83600DD356C /* MCTMsgViewController.mm in Sources */,
 				B5270376236B8E6400AD5455 /* AppDelegate.swift in Sources */,
+				B5069105238DD86300DD356C /* MCOMessageView.mm in Sources */,
+				B54A75E0249FF2D100C080DE /* SideMenuViewController.swift in Sources */,
 				B5270378236B8E6400AD5455 /* SceneDelegate.swift in Sources */,
 				B57D4FD1236F97AB005AA201 /* UIView+Extention.swift in Sources */,
+				B5069108238DD9B700DD356C /* MCOCIDURLProtocol.mm in Sources */,
+				B57771BE23776560004036D6 /* Constants.swift in Sources */,
+				B57771C2237768AC004036D6 /* User.swift in Sources */,
+				B506910D238DE86B00DD356C /* MailDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +738,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C24TZYQTQV;
 				INFOPLIST_FILE = Mail/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -612,6 +759,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C24TZYQTQV;
 				INFOPLIST_FILE = Mail/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

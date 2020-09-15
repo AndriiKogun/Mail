@@ -10,11 +10,12 @@ import UIKit
 
 class MailTableViewCell: UITableViewCell {
     
+    var messageRenderingOperation: MCOIMAPMessageRenderingOperation?
+    
     func setupWith(message: MCOIMAPMessage) {
-        senderIconLabel.text = String(message.header.sender.displayName?.first ?? Character(""))
+        senderIconLabel.text = String(message.header.sender.displayName?.first ?? Character(" "))
         senderLabel.text = message.header.sender.displayName
         titleLabel.text = message.header.subject
-        messageLabel.text = "Test"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
@@ -24,21 +25,12 @@ class MailTableViewCell: UITableViewCell {
     @IBOutlet private weak var senderIconLabel: UILabel!
     @IBOutlet private weak var senderLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    
-    
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        messageRenderingOperation?.cancel()
+        messageLabel.text = ""
     }
-    
 }

@@ -9,11 +9,14 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class MailsListViewController: UIViewController {
+    
+    private let loadCount = 10
     
     private var messages = [MCOIMAPMessage]()
+    private var folder = "INBOX"
     
-//    @property (nonatomic, strong) MCOIMAPOperation *imapCheckOp;
+    private var messagePreviews = [String: String]()
 
     private var imapMessagesFetchOpperation: MCOIMAPFetchMessagesOperation!
     private var imapCheckOperation: MCOIMAPOperation!
@@ -33,11 +36,18 @@ class ViewController: UIViewController {
         return tableView
     }()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(sendAction))
+        
         setupIMAP()
         setupLayout()
+    }
+    
+    @objc func sendAction() {
+        let vc = SendMailViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setupLayout() {
@@ -51,11 +61,12 @@ class ViewController: UIViewController {
     }
     
     func setupIMAP() {
-        imapSession.hostname = "imap.laposte.net"
-        imapSession.port = 993
-        imapSession.username = "gamnoposte@laposte.net"
-        imapSession.password = "Piska2016"
-        imapSession.connectionType = .TLS
+        let user = DataManager.shared.user()
+        imapSession.hostname = Constants.imapHostName
+        imapSession.port = Constants.imapPort
+        imapSession.username = user?.email
+        imapSession.password = user?.password
+        imapSession.connectionType = Constants.imapConnectionType
         
         imapSession.connectionLogger = { (connectionID, type, data) in
             
@@ -65,15 +76,16 @@ class ViewController: UIViewController {
         imapCheckOperation?.start({ [weak self] (error) in
             guard let self = `self` else { return }
             if error == nil {
-                self.loadMessages(10)
+                self.loadMessages(self.loadCount)
             }
         })
     }
     
-    func loadMessages(_ number: Int32) {
-        let inboxFolder = "INBOX"
-        let inboxFolderInfo = imapSession.folderInfoOperation(inboxFolder)
-
+    func loadMessages(_ number: Int) {
+        let number = Int32(number)
+        let inboxFolderInfo = imapSession.folderInfoOperation(folder)
+        isLoading = true
+        
         inboxFolderInfo?.start({ [weak self] (error, info) in
             guard let self = `self` else { return }
             
@@ -96,14 +108,16 @@ class ViewController: UIViewController {
                 fetchRange = MCORangeMake(UInt64(self.totalNumberOfInboxMessages - (numberOfMessagesToLoad - 1)), UInt64(numberOfMessagesToLoad - 1))
             }
             
-            self.imapMessagesFetchOpperation = self.imapSession.fetchMessagesByNumberOperation(withFolder: inboxFolder, requestKind: [.headers, .structure, .internalDate, .headerSubject, .flags], numbers: MCOIndexSet.init(range: fetchRange))
+            self.imapMessagesFetchOpperation = self.imapSession.fetchMessagesByNumberOperation(withFolder: self.folder, requestKind: [.headers, .structure, .internalDate, .headerSubject, .flags], numbers: MCOIndexSet.init(range: fetchRange))
             self.imapMessagesFetchOpperation?.progress = { (current) in
                 print("current\(current)")
             }
             
             self.imapMessagesFetchOpperation.start { (error, messages, vanishedMessages) in
                 if let messages = messages as?  [MCOIMAPMessage] {
-                    self.messages = messages.sorted(by: { $0.header.date > $1.header.date })
+                    self.isLoading = false
+                    self.messages.append(contentsOf: messages)
+                    self.messages.sort(by: { $0.header.date > $1.header.date })
                     self.tableView.reloadData()
                 }
             }
@@ -112,7 +126,7 @@ class ViewController: UIViewController {
 }
 
 //MARK: - UITableViewDataSource, UITableViewDelegate
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension MailsListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
@@ -121,10 +135,36 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let message = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: MailTableViewCell.reuseIdentifier) as! MailTableViewCell
         cell.setupWith(message: message)
+        
+        
+        let uidKey = String(message.uid)
+        if let cachedPreview = messagePreviews[uidKey] {
+            cell.messageLabel?.text = cachedPreview
+        } else {
+            cell.messageRenderingOperation = imapSession.plainTextBodyRenderingOperation(with: message, folder: folder)
+            cell.messageRenderingOperation?.start({ [weak self] (plainTextBodyString, error) in
+                guard let self = `self` else { return }
+                cell.messageLabel.text = plainTextBodyString
+                cell.messageRenderingOperation = nil
+                self.messagePreviews[uidKey] = plainTextBodyString
+            })
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if !isLoading && messages.count < totalNumberOfInboxMessages && messages.count <= indexPath.row + 5 {
+            loadMessages(messages.count + loadCount)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+        let vc = MailDetailsViewController()
+        vc.folder = "INBOX"
+        vc.message = message
+        vc.session = imapSession
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
