@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
-import GoogleMobileAds
+//import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,23 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
 //        let vc: UIViewController!
-//        
+//
 //        if DataManager.shared.user() != nil {
 //            vc = UINavigationController(rootViewController: MailsListViewController())
 //        } else {
 //            vc = LoginViewController()
 //        }
         
-        FirebaseApp.configure()
-        
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["97535C56-B88E-4472-9504-4"]
-
-        #if RELEASE
-        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
-        #else
-        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(false)
-        #endif
+//        FirebaseApp.configure()
+//        
+//        GADMobileAds.sharedInstance().start(completionHandler: nil)
+//        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["97535C56-B88E-4472-9504-4"]
+//
+//        #if RELEASE
+//        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+//        #else
+//        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(false)
+//        #endif
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
@@ -42,19 +42,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIViewController()
 //        SessionManager.shared.getStarted()
 
-        let mainViewController = MailsListViewController()
-        let leftViewController = LeftMenuViewController()
+//        let mainViewController = MailsListViewController()
+//        let leftViewController = LeftMenuViewController()
 
-        let sideMenuViewController = SideMenuViewController(rootViewController: mainViewController,
-                                                            leftViewController: leftViewController,
-                                                            rightViewController: nil)
+//        let sideMenuViewController = SideMenuViewController(rootViewController: mainViewController,
+//                                                            leftViewController: leftViewController,
+//                                                            rightViewController: nil)
         
-        let navigationController = UINavigationController(rootViewController: sideMenuViewController)
-        navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.backgroundColor = UIColor.white
-        
-        
-        window?.rootViewController = navigationController
+//        let navigationController = UINavigationController(rootViewController: vc)
+//        navigationController.navigationBar.isTranslucent = false
+//        navigationController.navigationBar.backgroundColor = UIColor.white
+//        
+//        
+//        window?.rootViewController = navigationController
         return true
     }
 

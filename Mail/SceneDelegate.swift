@@ -16,11 +16,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
+        let vc: UIViewController!
+        
+        if DataManager.shared.user() != nil {
+            vc = UINavigationController(rootViewController: MailsListViewController())
+        } else {
+            vc = LoginViewController()
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white
         window?.windowScene = windowScene
-        window?.rootViewController = UIViewController()
+        window?.rootViewController = vc
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

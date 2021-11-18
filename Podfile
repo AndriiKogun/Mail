@@ -9,7 +9,6 @@ target 'Mail' do
   pod 'mailcore2-ios'
   pod 'SnapKit', '~> 5.0'
   pod 'TinyConstraints'
-  pod 'Google-Mobile-Ads-SDK'
   pod 'LGSideMenuController'
 
   pod 'Firebase/Analytics'
